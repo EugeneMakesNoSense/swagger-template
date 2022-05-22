@@ -1,0 +1,42 @@
+openapi: "3.0.0"
+info:
+  version: "0.0.1"
+  title: "API Docs"
+servers:
+  - url: "http:/localhost:5000"
+    description: "Local server"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+  parameters: # Reusable path, query, header and cookie parameters
+  requestBodies:
+  responses:
+    Message:
+      description: Response with message
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  headers:
+  examples:
+  links:
+  callbacks:
+security:
+paths:
+  /test:
+    get:
+      summary: "Runs a test request against the Identity Server demo API"
+      responses:
+        200:
+          description: "OK"
+        401:
+          allOf:
+          - $ref: "#/components/responses/Message"
+          - description: "Unauthorized"
